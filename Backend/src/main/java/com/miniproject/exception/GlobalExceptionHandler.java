@@ -7,11 +7,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    // Handles all exceptions
     @ExceptionHandler(Exception.class)
     public String handleException(Exception ex, Model model) {
         model.addAttribute("errorMessage", ex.getMessage());
-        return "error"; // Thymeleaf template
+        return "error";
     }
 
     @ExceptionHandler(NullPointerException.class)

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b6d1c3f6-aa22-4e00-8e87-b3bddb8fea44" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/src/main/resources/application-prod.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,18 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Harshitf"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Harshitf&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Harshitf/MiniProject.git",
-    "accountId": "c724568f-20cf-46b5-a07d-8c71a19d9cb8"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Harshitf/MiniProject.git&quot;,
+    &quot;accountId&quot;: &quot;c724568f-20cf-46b5-a07d-8c71a19d9cb8&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -68,6 +69,7 @@
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "Spring Boot.Backend.executor": "Run",
     "Spring Boot.BackendApplication.executor": "Run",
     "Spring Boot.MiniProjectApplication.executor": "Run",
@@ -146,7 +148,8 @@
       <workItem from="1760781681837" duration="9343000" />
       <workItem from="1760860898088" duration="7036000" />
       <workItem from="1760950834040" duration="3952000" />
-      <workItem from="1761029549526" duration="10204000" />
+      <workItem from="1761029549526" duration="11581000" />
+      <workItem from="1761122112582" duration="357000" />
     </task>
     <servers />
   </component>

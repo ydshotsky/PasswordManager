@@ -1,5 +1,6 @@
-package com.miniproject;
+package com.miniproject.repositories;
 
+import com.miniproject.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

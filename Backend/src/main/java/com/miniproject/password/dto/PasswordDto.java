@@ -1,4 +1,4 @@
-package com.miniproject;
+package com.miniproject.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,6 @@ import java.time.LocalDate;
 public class PasswordDto {
     private Long id;
     private String siteUsername;
-    private String password;
     private String siteUrl;
     private String email;
     private String phoneNumber;
