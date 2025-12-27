@@ -11,8 +11,8 @@
     <groupId>com</groupId>
     <artifactId>Backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>MiniProjectBackend</name>
-    <description>MiniProject</description>
+    <name>PasswordManagerBackend</name>
+    <description>PasswordManager</description>
     <url/>
     <licenses>
         <license/>
@@ -37,11 +37,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <dependency>
-            <groupId>io.github.cdimascio</groupId>
-            <artifactId>dotenv-java</artifactId>
-            <version>3.2.0</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
