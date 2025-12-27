@@ -1,7 +1,7 @@
 package com.miniproject.configuration;
 
-import com.miniproject.User;
-import com.miniproject.UserRepository;
+import com.miniproject.user.entity.User;
+import com.miniproject.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class CustomUserDetailService implements UserDetailsService {
-
 
    private final UserRepository userRepository;
 

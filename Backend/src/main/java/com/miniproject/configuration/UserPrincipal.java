@@ -1,11 +1,13 @@
 package com.miniproject.configuration;
 
-import com.miniproject.User;
+import com.miniproject.user.entity.User;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+@Getter
 public class UserPrincipal implements UserDetails {
 
     private final User user;
@@ -19,9 +21,6 @@ public class UserPrincipal implements UserDetails {
         return List.of();
     }
 
-    public User getUser() {
-        return user;
-    }
     @Override
     public String getPassword() {
         return user.getPassword();
@@ -52,4 +51,5 @@ public class UserPrincipal implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
 }

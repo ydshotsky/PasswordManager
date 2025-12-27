@@ -1,6 +1,6 @@
-package com.miniproject.repositories;
+package com.miniproject.password.repository;
 
-import com.miniproject.entities.VaultPassword;
+import com.miniproject.password.entity.VaultPassword;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

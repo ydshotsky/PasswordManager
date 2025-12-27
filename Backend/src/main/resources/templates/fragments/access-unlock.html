@@ -1,0 +1,16 @@
+<div class="verification-modal" id="verificationOverlay" style="display:none;">
+    <div class="modal-header">
+        <h3>Confirm Identity</h3>
+        <p>Authentication is required to perform sensitive actions.</p>
+    </div>
+
+    <div class="modal-body">
+        <label for="auth-password">Account Password</label>
+        <input id="auth-password" placeholder="********" type="password"/>
+        <p class="error-text" id="authError"></p>
+    </div>
+
+    <div class="modal-footer">
+        <button class="primary-btn" id="verifyBtn" onclick="send_data()">Verify Identity</button>
+    </div>
+</div>

@@ -1,24 +1,28 @@
 package com.miniproject.controllers;
 
-import com.miniproject.utils.CryptoUtils;
-import com.miniproject.entities.User;
-import com.miniproject.repositories.PasswordRepository;
-import com.miniproject.repositories.UserRepository;
+import com.miniproject.configuration.UserPrincipal;
+import com.miniproject.security.crypto.CryptoUtils;
+import com.miniproject.user.entity.User;
+import com.miniproject.user.repository.UserRepository;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import java.security.Principal;
-import org.springframework.stereotype.Controller;
+
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 public class AuthController {
     private final UserRepository userRepository;
-    private final PasswordRepository passwordRepository;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/login")
@@ -26,47 +30,50 @@ public class AuthController {
         return "login";
     }
 
-
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("user", new User());
         return "signup";
     }
+
     @PostMapping("/signup")
     @Transactional
     public ResponseEntity<String> signUp(@ModelAttribute User user) {
         if (userRepository.findByUsername(user.getUsername()).isPresent())
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
+            return ResponseEntity
+                    .status(HttpStatus.CONFLICT)
+                    .body("User already exists");
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setKdfSalt(CryptoUtils.generateRandomSalt());
         try {
-            user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setKdfSalt(CryptoUtils.generateRandomSalt());
             userRepository.save(user);
         } catch (Exception e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("error saving user,please try again later");
         }
-        return ResponseEntity.ok().body("success");
+        return ResponseEntity.ok("user created successfully");
     }
-
-    @GetMapping("/")
-    public String Dashboard(Model model, Principal principal) {
-        String username = principal.getName();
-        long passwordCount = passwordRepository.countByUserUsername(username);
-        model.addAttribute("username", username);
-        model.addAttribute("passwordCount", passwordCount);
-        return "Dashboard";
-    }
-
 
     @DeleteMapping("/delete-all")
     @Transactional
-    public String deleteProfile(Principal principal) {
-        String username = principal.getName();
-        passwordRepository.deleteAllByUserUsername(username);
-        userRepository.deleteByUsername(username);
-        return "redirect:/login";
+    public ResponseEntity<Void> deleteProfile(@RequestBody Map<String, String> payload,
+                                              Authentication authentication,
+                                              HttpServletRequest request) throws ServletException {
+
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
+        User user = userPrincipal.getUser();
+
+        if (passwordEncoder.matches(payload.get("password"), user.getPassword())) {
+            userRepository.delete(user);
+            request.logout();
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    @GetMapping("delete-all")
+    @GetMapping("/delete-all")
     public String DeleteProfile() {
         return "deleteProfile";
     }

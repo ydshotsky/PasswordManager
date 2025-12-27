@@ -1,4 +1,4 @@
-package com.miniproject;
+package com.miniproject.exception;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;

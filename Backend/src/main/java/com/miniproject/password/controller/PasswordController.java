@@ -1,17 +1,17 @@
-package com.miniproject.controllers;
+package com.miniproject.password.controller;
 
 import com.miniproject.annotations.VaultUnlockedRequired;
 import com.miniproject.configuration.UserPrincipal;
 import com.miniproject.password.dto.PasswordDto;
-import com.miniproject.entities.User;
-import com.miniproject.entities.VaultPassword;
+import com.miniproject.user.entity.User;
+import com.miniproject.password.entity.VaultPassword;
 import com.miniproject.password.dto.SavePasswordRequest;
 import com.miniproject.password.mapper.PasswordEntityMapper;
-import com.miniproject.repositories.PasswordRepository;
-import com.miniproject.repositories.UserRepository;
+import com.miniproject.password.repository.PasswordRepository;
+import com.miniproject.user.repository.UserRepository;
 import com.miniproject.security.crypto.EncryptionResult;
 import com.miniproject.security.session.SessionKeyHolder;
-import com.miniproject.utils.AesGcmUtil;
+import com.miniproject.security.crypto.AesGcmUtil;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -126,7 +126,7 @@ public class PasswordController {
         List<PasswordDto> passwordDtos = passwords.stream()
                 .map(passwordEntityMapper::getPasswordDto)
                 .toList();
-        model.addAttribute("passwordList", passwordDtos);
+        model.addAttribute("passwords", passwordDtos);
         return "password-list";
     }
 
@@ -151,7 +151,7 @@ public class PasswordController {
 
 
 
-    @DeleteMapping("/delete-password/{id}")
+    @DeleteMapping("/delete/{id}")
     @VaultUnlockedRequired
     public ResponseEntity<String> deletePassword(@PathVariable("id") Long id,HttpSession session) {
         SessionKeyHolder sessionKeyHolder = getActiveVaultKey(session);

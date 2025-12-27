@@ -1,5 +1,6 @@
-package com.miniproject.entities;
+package com.miniproject.user.entity;
 
+import com.miniproject.password.entity.VaultPassword;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

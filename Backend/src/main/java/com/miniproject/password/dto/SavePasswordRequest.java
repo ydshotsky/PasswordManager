@@ -1,22 +1,19 @@
 package com.miniproject.password.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class PasswordDto {
-    private Long id;
+@Getter
+@Setter
+
+public class SavePasswordRequest {
     private String siteUsername;
     private String siteUrl;
     private String email;
     private String phoneNumber;
     private LocalDate createdAt;
     private String notes;
+    private String password;
 }

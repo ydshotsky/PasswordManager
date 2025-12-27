@@ -2,16 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Thymeleaf Example</title>
+    <title>Delete Account</title>
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
 </head>
 <body>
-<form th:action="@{/delete-all}" method="post">
-    <input type="hidden" name="_method" value="delete"/>
-    <button type="submit"
-            onclick="return confirm('Are you sure you want to delete all accounts?');">
-        Delete Your Account
-    </button>
-</form>
+    <div style="display: none">
+        <label for="login-password">Enter Login Password for conformation</label>
+        <input id="login-password" type="password" placeholder="Enter Login Password"/>
+        <button id="delete-button" type="button">confirm delete</button>
+    </div>
+    <button id="verify-button" type="button">Delete Your Account</button>
+<script>
+    const button=document.getElementById('verify-button');
+    const csrfToken=document.querySelector('meta[name="_csrf"]').content;
+    const csrfHeader=document.querySelector('meta[name="_csrf_header"]').content;
+    const deleteAccount=document.getElementById('delete-button');
+    button.addEventListener('click',  (e) => {
+        e.preventDefault();
+        document.querySelector("div").style.display="block";
+    });
 
+    deleteAccount.addEventListener('click',async (e) => {
+        e.preventDefault();
+        const password=document.getElementById('login-password').textContent;
+        const res=await fetch("/delete-all",{
+            method: 'DELETE',
+            headers: {
+                [csrfHeader]:csrfToken,
+                'content-type':'application/json'
+            },
+            redirect:'manual',
+            body:JSON.stringify({password:password}),
+        });
+        if (res.status === 302||res.status === 0){
+            window.location.replace("/login?sessionExpired=true");
+        }
+        else if (res.status === 200){
+            window.location.replace("/login?accountDeleted=true");
+        }
+        else if (res.status === 401){
+            alert("incorrect credentials");
+        }
+        else {
+            alert("something went wrong");
+        }
+    });
+
+</script>
 </body>
 </html>

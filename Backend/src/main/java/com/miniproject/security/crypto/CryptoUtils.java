@@ -1,4 +1,4 @@
-package com.miniproject.utils;
+package com.miniproject.security.crypto;
 
 import java.security.SecureRandom;
 

@@ -1,7 +1,7 @@
-package com.miniproject.mapper;
+package com.miniproject.password.mapper;
 
-import com.miniproject.dto.PasswordDto;
-import com.miniproject.entities.VaultPassword;
+import com.miniproject.password.dto.PasswordDto;
+import com.miniproject.password.entity.VaultPassword;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

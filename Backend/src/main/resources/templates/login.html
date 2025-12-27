@@ -14,6 +14,12 @@
     <div th:if="${param.logout}">
         <p style="color:green;">You have been logged out</p>
     </div>
+    <div th:if="${param.accountDeleted}">
+        <p style="color:green;">Your account has been deleted successfully</p>
+    </div>
+    <div th:if="${param.sessionExpired}">
+        <p style="color:green;">Your session has expired. Please log in again to continue. </p>
+    </div>
 
     <form method="post" th:action="@{/login}">
         <div>

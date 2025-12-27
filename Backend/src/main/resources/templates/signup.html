@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Signup</title>
     <link rel="stylesheet" th:href="@{/css/signup.css}"/>
@@ -13,7 +13,7 @@
             <label for="username">Username</label>
             <input id="username" name="username" required type="text"/>
         </div>
-
+        <span id="username-status"></span>
         <div>
             <label for="password">Password</label>
             <input id="password" name="password" required type="password"/>
@@ -23,5 +23,38 @@
 
     <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
 </div>
+<script>
+    const usernameInput = document.getElementById('username');
+    const statusSpan = document.getElementById('username-status');
+    usernameInput.addEventListener('blur', async function () {
+        const username = usernameInput.value.trim();
+        if (username === "") {
+            statusSpan.textContent = "";
+            return;
+        }
+        try {
+            const res = await fetch(`/users/username-availability?username=${encodeURIComponent(username)}`, {
+                method: "GET",
+                redirect: "manual"
+            });
+            if (res.status === 200) {
+                const data = await res.text();
+                if (data === "true") {
+                    statusSpan.textContent = "username available";
+                    statusSpan.style.color = "blue";
+                } else {
+                    statusSpan.textContent = "username not available";
+                    statusSpan.style.color = "red";
+                }
+            }
+            else {
+                statusSpan.textContent = "server not responding,please try again later.";
+            }
+        } catch (err) {
+            statusSpan.textContent = "unable to check username";
+            statusSpan.style.color = "orange";
+        }
+    });
+</script>
 </body>
 </html>
