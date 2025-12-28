@@ -2,7 +2,7 @@ spring:
   application:
     name: PasswordManager
   datasource:
-    url: jdbc:postgresql://invalid-host/test
+    url: ${SPRING_DATABASE_USERNAME}
     username: ${SPRING_DATABASE_USERNAME}
     password: ${SPRING_DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
