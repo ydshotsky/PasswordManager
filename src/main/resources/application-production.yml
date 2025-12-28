@@ -9,9 +9,9 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-  data:
-    jdbc:
-      dialect: postgresql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 server:
   servlet:
