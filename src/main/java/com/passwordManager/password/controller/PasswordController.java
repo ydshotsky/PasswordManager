@@ -32,7 +32,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/password/")
+@RequestMapping("/password")
 public class PasswordController {
     private final PasswordRepository passwordRepository;
     private final PasswordEntityMapper passwordEntityMapper;
@@ -126,7 +126,10 @@ public class PasswordController {
         List<PasswordDto> passwordDtos = passwords.stream()
                 .map(passwordEntityMapper::getPasswordDto)
                 .toList();
-        model.addAttribute("passwords", passwordDtos);
+        if(passwordDtos.isEmpty())
+            model.addAttribute("message", "No Passwords Saved Yet");
+        else
+            model.addAttribute("passwords", passwordDtos);
         return "password-list";
     }
 
