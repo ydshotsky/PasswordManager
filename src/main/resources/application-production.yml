@@ -17,3 +17,12 @@ server:
   servlet:
     session:
       timeout: 20m
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+    com:
+      zaxxer:
+        hikari: DEBUG
