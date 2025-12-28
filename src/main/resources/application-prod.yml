@@ -2,9 +2,9 @@ spring:
   application:
     name: PasswordManager
   datasource:
-    url: ${DATABASE_URL:URL_NOT_FOUND}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
+    url: ${SPRING_DATABASE_URL}
+    username: ${SPRING_DATABASE_USERNAME}
+    password: ${SPRING_DATABASE_PASSWORD}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
