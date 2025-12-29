@@ -25,7 +25,7 @@
 
     deleteAccount.addEventListener('click',async (e) => {
         e.preventDefault();
-        const password=document.getElementById('login-password').textContent;
+        const password=document.getElementById('login-password').value;
         const res=await fetch("/delete-all",{
             method: 'DELETE',
             headers: {
