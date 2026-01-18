@@ -8,7 +8,7 @@
 <div class="container">
     <h1>Sign Up</h1>
 
-    <form method="post" th:action="@{/signup}">
+    <form method="post" th:action="@{/signup}" th:object="${user}">
         <div>
             <label for="username">Username</label>
             <input id="username" name="username" required type="text"/>
