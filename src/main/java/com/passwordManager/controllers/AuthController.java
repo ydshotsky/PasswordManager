@@ -42,17 +42,15 @@ public class AuthController {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
                     .body("User already exists");
-        System.out.println("setting password");
+       
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        
-        System.out.println("setted password");
+    
         user.setKdfSalt(CryptoUtils.generateRandomSalt());
         
-        System.out.println("setted salt");
+      
         try {
             userRepository.save(user);
-            System.out.println("user saved");
-            
+          
         } catch (Exception e) {
             
         System.out.println(e);
