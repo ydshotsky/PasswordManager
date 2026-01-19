@@ -42,11 +42,13 @@ public class AuthController {
             return ResponseEntity
                     .status(HttpStatus.CONFLICT)
                     .body("User already exists");
-
+        System.out.ptintln("signing");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setKdfSalt(CryptoUtils.generateRandomSalt());
         try {
             userRepository.save(user);
+            System.out.ptintln("user saved");
+            
         } catch (Exception e) {
             return ResponseEntity
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
