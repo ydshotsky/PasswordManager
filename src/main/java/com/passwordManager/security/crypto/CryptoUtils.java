@@ -4,8 +4,7 @@ import java.security.SecureRandom;
 public class CryptoUtils {
     private static final int IV_LENGTH=12;
     private static final int SALT_LENGTH = 16;
-    private final SecureRandom secureRandom;
-    public CryptoUtils() {this.secureRandom = new SecureRandom();}
+    private static final SecureRandom secureRandom= new SecureRandom();
     
     public static byte[] generateRandomSalt() {
         byte[] salt = new byte[SALT_LENGTH];
