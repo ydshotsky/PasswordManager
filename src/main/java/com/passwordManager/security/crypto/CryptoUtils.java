@@ -1,17 +1,15 @@
 package com.passwordManager.security.crypto;
-
 import java.security.SecureRandom;
 
 public class CryptoUtils {
     private static final int IV_LENGTH=12;
     private static final int SALT_LENGTH = 16;
     private static final SecureRandom secureRandom;
-    public CryptoUtils() {
-        this.secureRandom = new SecureRandom();
-    }
+    public CryptoUtils() {this.secureRandom = new SecureRandom();}
+    
     public static byte[] generateRandomSalt() {
         byte[] salt = new byte[SALT_LENGTH];
-        secureRandom.nextBytes(salt);}
+        secureRandom.nextBytes(salt);
         return salt;
     }
     public static byte[] generateIV() {
