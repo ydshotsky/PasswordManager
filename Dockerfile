@@ -27,7 +27,8 @@ WORKDIR /PasswordManager
 
 # Copy JAR from build stage
 COPY --from=build /PasswordManager/target/*.jar app.jar
-ENV SPRING_PROFILES_ACTIVE=prod
+ENV SPRING_PROFILES_ACTIVE=production
+
 
 
 # Expose port (change if your app uses a different port)
